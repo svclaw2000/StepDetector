@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#FFEFEF">
+	
+	<TextView
+		android:id="@+id/Ttime"
+		android:layout_width="300dp"
+		android:layout_height="100dp"
+		android:text="00:00.00"
+		android:textSize="50sp"
+		android:gravity="center"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toTopOf="@id/Twalk"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent" />
+	
+	<TextView
+		android:id="@+id/Twalk"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="Walk"
+		android:textSize="25sp"
+		android:gravity="center"
+		android:layout_marginBottom="250dp"
+		app:layout_constraintTop_toBottomOf="@id/Ttime"
+		app:layout_constraintBottom_toTopOf="@id/guideline"
+		app:layout_constraintRight_toLeftOf="@id/Tstop"
+		app:layout_constraintLeft_toLeftOf="parent"/>
+	
+	<TextView
+		android:id="@+id/Tstop"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="Stop"
+		android:textSize="25sp"
+		android:gravity="center"
+		android:layout_marginBottom="250dp"
+		app:layout_constraintLeft_toRightOf="@id/Twalk"
+		app:layout_constraintTop_toBottomOf="@id/Ttime"
+		app:layout_constraintBottom_toBottomOf="@id/guideline"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+	<Button
+		android:id="@+id/Cforward"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:gravity="center"
+		android:tag="Walk"
+		android:text="Forward"
+		android:textSize="20sp"
+		app:layout_constraintBottom_toTopOf="@+id/Cleft"
+		app:layout_constraintEnd_toStartOf="@+id/Tstop"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Twalk" />
+	
+	<Button
+		android:id="@+id/Cleft"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:gravity="center"
+		android:tag="Walk"
+		android:text="Left"
+		android:textSize="20sp"
+		app:layout_constraintRight_toLeftOf="@+id/Tstop"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/Cforward"
+		app:layout_constraintBottom_toTopOf="@id/Cright"/>
+	
+	<Button
+		android:id="@+id/Cright"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="Right"
+		android:tag="Walk"
+		android:textSize="20sp"
+		android:gravity="center"
+		android:layout_marginBottom="60dp"
+		app:layout_constraintTop_toBottomOf="@id/Cleft"
+		app:layout_constraintBottom_toBottomOf="@id/guideline"
+		app:layout_constraintRight_toLeftOf="@id/Tstop"
+		app:layout_constraintLeft_toLeftOf="parent"/>
+	
+	<Button
+		android:id="@+id/Cstop"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="Stop"
+		android:tag="Stop"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/Tstop"
+		app:layout_constraintBottom_toTopOf="@id/Cleftright"
+		app:layout_constraintLeft_toRightOf="@id/Twalk"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+	<Button
+		android:id="@+id/Cleftright"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="LeftRight"
+		android:tag="Stop"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/Cstop"
+		app:layout_constraintBottom_toTopOf="@id/Cupdown"
+		app:layout_constraintLeft_toRightOf="@id/Twalk"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+	<Button
+		android:id="@+id/Cupdown"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="UpDown"
+		android:tag="Stop"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/Cleftright"
+		app:layout_constraintBottom_toTopOf="@id/Ctyping"
+		app:layout_constraintLeft_toRightOf="@id/Twalk"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+	<Button
+		android:id="@+id/Ctyping"
+		android:layout_width="150dp"
+		android:layout_height="50dp"
+		android:text="Typing"
+		android:tag="Stop"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/Cupdown"
+		app:layout_constraintBottom_toTopOf="@id/guideline"
+		app:layout_constraintLeft_toRightOf="@id/Twalk"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+	<android.support.constraint.Guideline
+		android:id="@+id/guideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintGuide_begin="488dp" />
+	
+	<TextView
+		android:id="@+id/Tstatus"
+		android:layout_width="300dp"
+		android:layout_height="30dp"
+		android:text="TextView"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/guideline"
+		app:layout_constraintBottom_toTopOf="@id/Bcancel"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent" />
+	
+	<Button
+		android:id="@+id/Bcancel"
+		android:layout_width="200dp"
+		android:layout_height="70dp"
+		android:text="CANCEL"
+		android:clickable="false"
+		app:layout_constraintTop_toBottomOf="@id/Tstatus"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+</android.support.constraint.ConstraintLayout>
