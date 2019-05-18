@@ -20,6 +20,9 @@ import android.widget.Toast;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	Button Bcancel;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	String curStatus = "";
 	
 	TextView Ttime;
+	TextView Tstatus;
 	
 	Button Cforward;
 	Button Cleft;
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			public void onClick(View v) {
 				if (sensing) {
 					sensing = false;
+					Tstatus.setText("00:00:00");
 					Toast.makeText(MainActivity.this, "Cancel data scanning.", Toast.LENGTH_SHORT).show();
 					timer.removeMessages(0);
 				}
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		});
 		
 		Ttime = findViewById(R.id.Ttime);
+		Tstatus = findViewById(R.id.Tstatus);
 		
 		Cforward = findViewById(R.id.Cforward);
 		Cleft = findViewById(R.id.Cleft);
@@ -124,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			if (acceReady && gyroReady) {
 				if (!stepReady) mValues[6] = 0;
 				else stepReady = false;
-				sb.append(String.format("%d\t%s\t%s\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.1f\n",
-						timeDuration, mode[0], mode[1], mValues[0], mValues[1], mValues[2], mValues[3], mValues[4], mValues[5], mValues[6]));
+				sb.append(String.format("%d\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.1f\n",
+						timeDuration, mValues[0], mValues[1], mValues[2], mValues[3], mValues[4], mValues[5], mValues[6]));
 				acceReady = false;
 				gyroReady = false;
 			}
@@ -146,14 +152,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				timer.sendEmptyMessage(0);
 			} else {
 				sensing = false;
+				Ttime.setText("00:00:00");
 				
-				String FILE_NAME = "Log.log";
-				File file = new File(MainActivity.this.getFilesDir(), FILE_NAME);
+				SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
+				
+				String FILE_NAME = "data" + date.format(new Date()) + ".tsv";
+				File folder = new File(MainActivity.this.getFilesDir(), mode[0]+"/"+mode[1]);
+				File file = new File(folder, FILE_NAME);
 				
 				try {
-					FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), true);
+					if (!folder.exists()) folder.mkdirs();
+					FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
 					BufferedWriter bw = new BufferedWriter(fileWriter);
-					bw.write(sb.toString() + "\n");
+					bw.write(sb.toString());
 					bw.close();
 					Toast.makeText(MainActivity.this, "Log Saved", Toast.LENGTH_SHORT).show();
 					count++;
@@ -183,13 +194,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	
 	@Override
 	public void onClick(View v) {
-		if (sensing) return;
+		if (sensing) {
+			Toast.makeText(MainActivity.this, "Please wait until sensing process end.", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		
 		mode[0] = v.getTag().toString();
 		mode[1] = ((Button)v).getText().toString();
 		
 		sb = new StringBuffer();
 		sensing = true;
+		Tstatus.setText(String.format("%s : %s", mode[0], mode[1]));
 		timeStart = System.currentTimeMillis();
 		timer.sendEmptyMessage(0);
 	}

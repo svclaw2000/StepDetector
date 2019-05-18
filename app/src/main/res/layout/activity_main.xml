@@ -147,7 +147,7 @@
 		android:id="@+id/Tstatus"
 		android:layout_width="300dp"
 		android:layout_height="30dp"
-		android:text="TextView"
+		android:text="Not running"
 		android:textSize="20sp"
 		android:gravity="center"
 		app:layout_constraintTop_toBottomOf="@id/guideline"
