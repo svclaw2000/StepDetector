@@ -1,5 +1,6 @@
 package com.khnsoft.stepdetector;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -23,9 +24,11 @@ import java.io.FileWriter;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	Button Bcancel;
+	Button Bdata;
 	boolean sensing = false;
 	SensorManager sm;
 	Sensor AcceSensor;
@@ -33,12 +36,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	Sensor StepSensor;
 	StringBuffer sb;
 	float[] mValues = new float[7];
-	float[] defValue = {0, 0, 0, 0, 0, 0, 0};
 	int count = 0;
 	long timeStart = 0;
 	long timeDuration = 0;
-	final long SCANNING_DURATION = 30000;
-	String curStatus = "";
+	final long SCANNING_DURATION_LONG = 30000;
+	final long SCANNING_DURATION_SHORT = 5000;
+	long curDuration;
 	
 	TextView Ttime;
 	TextView Tstatus;
@@ -47,8 +50,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	Button Cleft;
 	Button Cright;
 	Button Cstop;
-	Button Cleftright;
-	Button Cupdown;
+	Button Cstopleft;
+	Button Cstopright;
+	Button Cup;
+	Button Cdown;
 	Button Ctyping;
 	String[] mode = {"", ""};
 	
@@ -67,9 +72,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			public void onClick(View v) {
 				if (sensing) {
 					sensing = false;
-					Tstatus.setText("00:00:00");
+					Ttime.setText("00:00:00");
+					Tstatus.setText("Not running");
 					Toast.makeText(MainActivity.this, "Cancel data scanning.", Toast.LENGTH_SHORT).show();
 					timer.removeMessages(0);
+				}
+			}
+		});
+		Bdata = findViewById(R.id.Bdata);
+		Bdata.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!sensing) {
+					Intent intent = new Intent(MainActivity.this, DataBrowser.class);
+					startActivity(intent);
 				}
 			}
 		});
@@ -81,16 +97,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		Cleft = findViewById(R.id.Cleft);
 		Cright = findViewById(R.id.Cright);
 		Cstop = findViewById(R.id.Cstop);
-		Cleftright = findViewById(R.id.Cleftright);
-		Cupdown = findViewById(R.id.Cupdown);
+		Cstopleft = findViewById(R.id.Cstopleft);
+		Cstopright = findViewById(R.id.Cstopright);
+		Cup = findViewById(R.id.Cup);
+		Cdown = findViewById(R.id.Cdown);
 		Ctyping = findViewById(R.id.Ctyping);
 		
 		Cforward.setOnClickListener(this);
 		Cleft.setOnClickListener(this);
 		Cright.setOnClickListener(this);
 		Cstop.setOnClickListener(this);
-		Cleftright.setOnClickListener(this);
-		Cupdown.setOnClickListener(this);
+		Cstopleft.setOnClickListener(this);
+		Cstopright.setOnClickListener(this);
+		Cup.setOnClickListener(this);
+		Cdown.setOnClickListener(this);
 		Ctyping.setOnClickListener(this);
 		
 		sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -130,8 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			if (acceReady && gyroReady) {
 				if (!stepReady) mValues[6] = 0;
 				else stepReady = false;
-				sb.append(String.format("%d\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.1f\n",
-						timeDuration, mValues[0], mValues[1], mValues[2], mValues[3], mValues[4], mValues[5], mValues[6]));
+				sb.append(String.format("%d\t%s\t%s\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.1f\n",
+						timeDuration, mode[0], mode[1], mValues[0], mValues[1], mValues[2], mValues[3], mValues[4], mValues[5], mValues[6]));
 				acceReady = false;
 				gyroReady = false;
 			}
@@ -147,16 +167,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		@Override
 		public boolean handleMessage(Message msg) {
 			timeDuration = System.currentTimeMillis() - timeStart;
-			if (timeDuration < SCANNING_DURATION) {
+			if (timeDuration < curDuration) {
 				Ttime.setText(String.format("%02d:%02d:%02d", timeDuration / 1000 / 60, timeDuration / 1000 % 100, timeDuration / 10 % 100));
 				timer.sendEmptyMessage(0);
 			} else {
 				sensing = false;
 				Ttime.setText("00:00:00");
+				Tstatus.setText("Not running");
 				
-				SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
+				SimpleDateFormat date = new SimpleDateFormat("yyMMdd_HHmmss");
 				
-				String FILE_NAME = "data" + date.format(new Date()) + ".tsv";
+				String FILE_NAME = "data_" + date.format(new Date()) + ".tsv";
 				File folder = new File(MainActivity.this.getFilesDir(), mode[0]+"/"+mode[1]);
 				File file = new File(folder, FILE_NAME);
 				
@@ -205,6 +226,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		sb = new StringBuffer();
 		sensing = true;
 		Tstatus.setText(String.format("%s : %s", mode[0], mode[1]));
+		if (mode[0].equals("Stop") && (mode[1].equals("Left") || mode[1].equals("Right") || mode[1].equals("Up") || mode[1].equals("Down")))
+			curDuration = SCANNING_DURATION_SHORT;
+		else
+			curDuration = SCANNING_DURATION_LONG;
 		timeStart = System.currentTimeMillis();
 		timer.sendEmptyMessage(0);
 	}

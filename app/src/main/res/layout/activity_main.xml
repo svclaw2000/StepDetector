@@ -8,10 +8,10 @@
 	
 	<TextView
 		android:id="@+id/Ttime"
-		android:layout_width="300dp"
-		android:layout_height="100dp"
+		android:layout_width="170dp"
+		android:layout_height="50dp"
 		android:text="00:00.00"
-		android:textSize="50sp"
+		android:textSize="30sp"
 		android:gravity="center"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toTopOf="@id/Twalk"
@@ -20,12 +20,13 @@
 	
 	<TextView
 		android:id="@+id/Twalk"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:text="Walk"
 		android:textSize="25sp"
 		android:gravity="center"
-		android:layout_marginBottom="250dp"
+		android:layout_marginBottom="350dp"
 		app:layout_constraintTop_toBottomOf="@id/Ttime"
 		app:layout_constraintBottom_toTopOf="@id/guideline"
 		app:layout_constraintRight_toLeftOf="@id/Tstop"
@@ -33,12 +34,13 @@
 	
 	<TextView
 		android:id="@+id/Tstop"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:text="Stop"
 		android:textSize="25sp"
 		android:gravity="center"
-		android:layout_marginBottom="250dp"
+		android:layout_marginBottom="350dp"
 		app:layout_constraintLeft_toRightOf="@id/Twalk"
 		app:layout_constraintTop_toBottomOf="@id/Ttime"
 		app:layout_constraintBottom_toBottomOf="@id/guideline"
@@ -46,7 +48,8 @@
 	
 	<Button
 		android:id="@+id/Cforward"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:gravity="center"
 		android:tag="Walk"
@@ -59,7 +62,8 @@
 	
 	<Button
 		android:id="@+id/Cleft"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:gravity="center"
 		android:tag="Walk"
@@ -72,7 +76,8 @@
 	
 	<Button
 		android:id="@+id/Cright"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:text="Right"
 		android:tag="Walk"
@@ -86,52 +91,84 @@
 	
 	<Button
 		android:id="@+id/Cstop"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:text="Stop"
 		android:tag="Stop"
 		android:textSize="20sp"
 		android:gravity="center"
 		app:layout_constraintTop_toBottomOf="@id/Tstop"
-		app:layout_constraintBottom_toTopOf="@id/Cleftright"
+		app:layout_constraintBottom_toTopOf="@id/Cstopleft"
 		app:layout_constraintLeft_toRightOf="@id/Twalk"
 		app:layout_constraintRight_toRightOf="parent"/>
 	
 	<Button
-		android:id="@+id/Cleftright"
-		android:layout_width="150dp"
+		android:id="@+id/Cstopleft"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
-		android:text="LeftRight"
+		android:text="Left"
 		android:tag="Stop"
 		android:textSize="20sp"
 		android:gravity="center"
 		app:layout_constraintTop_toBottomOf="@id/Cstop"
-		app:layout_constraintBottom_toTopOf="@id/Cupdown"
+		app:layout_constraintBottom_toTopOf="@id/Cup"
 		app:layout_constraintLeft_toRightOf="@id/Twalk"
-		app:layout_constraintRight_toRightOf="parent"/>
+		app:layout_constraintRight_toLeftOf="@id/Cstopright"/>
 	
 	<Button
-		android:id="@+id/Cupdown"
-		android:layout_width="150dp"
+		android:id="@+id/Cstopright"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
-		android:text="UpDown"
+		android:text="Right"
 		android:tag="Stop"
 		android:textSize="20sp"
 		android:gravity="center"
-		app:layout_constraintTop_toBottomOf="@id/Cleftright"
+		app:layout_constraintTop_toBottomOf="@id/Cstop"
+		app:layout_constraintBottom_toTopOf="@id/Cup"
+		app:layout_constraintLeft_toRightOf="@id/Cstopleft"
+		app:layout_constraintRight_toRightOf="parent"/>
+	
+	<Button
+		android:id="@+id/Cup"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
+		android:layout_height="50dp"
+		android:text="Up"
+		android:tag="Stop"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/Cstopleft"
 		app:layout_constraintBottom_toTopOf="@id/Ctyping"
 		app:layout_constraintLeft_toRightOf="@id/Twalk"
+		app:layout_constraintRight_toLeftOf="@id/Cdown"/>
+	
+	<Button
+		android:id="@+id/Cdown"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
+		android:layout_height="50dp"
+		android:text="Down"
+		android:tag="Stop"
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintTop_toBottomOf="@id/Cstopleft"
+		app:layout_constraintBottom_toTopOf="@id/Ctyping"
+		app:layout_constraintLeft_toRightOf="@id/Cup"
 		app:layout_constraintRight_toRightOf="parent"/>
 	
 	<Button
 		android:id="@+id/Ctyping"
-		android:layout_width="150dp"
+		android:layout_width="0dp"
+		app:layout_constraintHorizontal_weight="1"
 		android:layout_height="50dp"
 		android:text="Typing"
 		android:tag="Stop"
 		android:textSize="20sp"
 		android:gravity="center"
-		app:layout_constraintTop_toBottomOf="@id/Cupdown"
+		app:layout_constraintTop_toBottomOf="@id/Cup"
 		app:layout_constraintBottom_toTopOf="@id/guideline"
 		app:layout_constraintLeft_toRightOf="@id/Twalk"
 		app:layout_constraintRight_toRightOf="parent"/>
@@ -166,4 +203,14 @@
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"/>
 	
+	<Button
+		android:id="@+id/Bdata"
+		android:layout_width="70dp"
+		android:layout_height="50dp"
+		android:text="Data"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toLeftOf="@id/Ttime"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toTopOf="@id/Twalk"/>
+
 </android.support.constraint.ConstraintLayout>
