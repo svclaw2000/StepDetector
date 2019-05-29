@@ -224,6 +224,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		mode[1] = ((Button)v).getText().toString();
 		
 		sb = new StringBuffer();
+		acceReady = false;
+		gyroReady = false;
+		stepReady = false;
+		sb.append("ElapsedTime\tMode0\tMode1\tAcce0\tAcce1\tAcce2\tGyro0\tGyro1\tGyro2\tStep\n");
 		sensing = true;
 		Tstatus.setText(String.format("%s : %s", mode[0], mode[1]));
 		if (mode[0].equals("Stop") && (mode[1].equals("Left") || mode[1].equals("Right") || mode[1].equals("Up") || mode[1].equals("Down")))
