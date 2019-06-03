@@ -29,6 +29,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	Button Bcancel;
 	Button Bdata;
+	Button Btest;
 	boolean sensing = false;
 	SensorManager sm;
 	Sensor AcceSensor;
@@ -85,6 +86,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			public void onClick(View v) {
 				if (!sensing) {
 					Intent intent = new Intent(MainActivity.this, DataBrowser.class);
+					startActivity(intent);
+				}
+			}
+		});
+		Btest = findViewById(R.id.Btest);
+		Btest.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!sensing) {
+					Intent intent = new Intent(MainActivity.this, Training.class);
 					startActivity(intent);
 				}
 			}

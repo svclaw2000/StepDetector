@@ -41,6 +41,7 @@ public class DataBrowser extends AppCompatActivity {
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, files);
 		LcurDir.setAdapter(adapter);
 		LcurDir.setOnItemClickListener(itemClickListener);
+		LcurDir.setOnItemLongClickListener(itemLongClickListener);
 		
 		refreshFiles();
 	}
@@ -57,7 +58,19 @@ public class DataBrowser extends AppCompatActivity {
 			if (f.isDirectory()) {
 				curPath = path;
 				refreshFiles();
-			} else removeAlert(path);
+			}
+		}
+	};
+	
+	AdapterView.OnItemLongClickListener itemLongClickListener = new AdapterView.OnItemLongClickListener() {
+		@Override
+		public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+			String name = files.get(position);
+			if (name.startsWith("[") && name.endsWith("]"))
+				name = name.substring(1, name.length()-1);
+			String path = curPath + "/" + name;
+			removeAlert(path);
+			return false;
 		}
 	};
 	
@@ -91,12 +104,25 @@ public class DataBrowser extends AppCompatActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						File f = new File(rootPath + "/" + path);
-						f.delete();
+						removeDirectory(f.getPath());
 						refreshFiles();
 					}
 				})
 				.setNegativeButton("취소", null)
 				.show();
+	}
+	
+	void removeDirectory(String path) {
+		File dir = new File(path);
+		File[] childFileList = dir.listFiles();
+		
+		if (dir.exists()) {
+			for (File childFile : childFileList) {
+				if (childFile.isDirectory()) removeDirectory(childFile.getPath());
+				else childFile.delete();
+			}
+			dir.delete();
+		}
 	}
 	
 	@Override
