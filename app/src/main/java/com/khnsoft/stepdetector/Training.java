@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ import libsvm.*;
 public class Training extends AppCompatActivity {
 	TextView Tversion;
 	TextView Tlog;
+	ScrollView Slog;
 	Button Bswitch;
 	SharedPreferences sp;
 	SharedPreferences.Editor editor;
@@ -63,6 +65,7 @@ public class Training extends AppCompatActivity {
 		
 		Tversion = findViewById(R.id.Tversion);
 		Tlog = findViewById(R.id.Tlog);
+		Slog = findViewById(R.id.scrollLog);
 		Bswitch = findViewById(R.id.Bswitch);
 		sp = getSharedPreferences("Settings", MODE_PRIVATE);
 		editor = sp.edit();
@@ -75,6 +78,7 @@ public class Training extends AppCompatActivity {
 					// Stop testing
 					Bswitch.setText("Test");
 					Tlog.append("Stop testing.\n");
+					Slog.fullScroll(View.FOCUS_DOWN);
 					testing = !testing;
 					count = 0;
 					timer.removeMessages(0);
@@ -82,6 +86,7 @@ public class Training extends AppCompatActivity {
 					// Start testing
 					Bswitch.setText("Stop");
 					Tlog.append("Start testing.\n");
+					Slog.fullScroll(View.FOCUS_DOWN);
 					testing = !testing;
 					
 					sb = new StringBuffer();
@@ -155,9 +160,11 @@ public class Training extends AppCompatActivity {
 						if (result.equals("0.0")) result = "Stop";
 						else if (result.equals("1.0")) result = "Walk";
 						Tlog.append(result + "\n");
+						Slog.fullScroll(View.FOCUS_DOWN);
 					} catch (Exception e) {
 						e.printStackTrace();
 						Tlog.append("Prediction failed\n");
+						Slog.fullScroll(View.FOCUS_DOWN);
 					}
 					sb = new StringBuffer();
 					sb.append("ElapsedTime\tMode0\tMode1\tAcce0\tAcce1\tAcce2\tGyro0\tGyro1\tGyro2\tStep\n");
@@ -208,10 +215,12 @@ public class Training extends AppCompatActivity {
 					if (rec.startsWith("v")) {
 						serverModelVersion = rec;
 						Tlog.append("Server model version is " + serverModelVersion + "\n");
+						Slog.fullScroll(View.FOCUS_DOWN);
 						getModel();
 					}
 					else {
 						Tlog.append(rec + "\n");
+						Slog.fullScroll(View.FOCUS_DOWN);
 					}
 				}
 			});
@@ -244,7 +253,7 @@ public class Training extends AppCompatActivity {
 				byte[] tmpByte = new byte[len];
 				is = httpCon.getInputStream();
 				File folder = new File(Training.this.getFilesDir(), "Models");
-				File file = new File(folder, localModelVersion + ".model");
+				File file = new File(folder, serverModelVersion + ".model");
 				if (!folder.exists()) folder.mkdirs();
 				FileOutputStream fos = new FileOutputStream(file);
 				int Read;
@@ -262,6 +271,7 @@ public class Training extends AppCompatActivity {
 			httpCon.disconnect();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "Error! Failed to connect!";
 		}
 		
 		return result;
@@ -279,22 +289,34 @@ public class Training extends AppCompatActivity {
 	}
 	
 	void checkVersion() {
-		localModelVersion = sp.getString("version", "v0.0");
+		File fModel = new File(this.getFilesDir().getAbsolutePath(), "Models");
+		File[] lModel = fModel.listFiles();
+		File lastModel = lModel[lModel.length-1];
+		
+		localModelVersion = lastModel.getName().split(".model")[0];
 		Tlog.append("Checking version.\n");
+		Slog.fullScroll(View.FOCUS_DOWN);
+		Tlog.append("Local model version is " + localModelVersion + "\n");
+		Slog.fullScroll(View.FOCUS_DOWN);
+		Tversion.setText(localModelVersion);
 		httpTask = new HttpAsyncTask(this);
 		httpTask.execute("getVersion");
 	}
 	
 	void getModel() {
 		if (serverModelVersion != null) {
-			if (serverModelVersion.equals(localModelVersion)) Tlog.append("Model is already up to date.\n");
-			else {
+			if (serverModelVersion.equals(localModelVersion)) {
+				Tlog.append("Model is already up to date.\n");
+				Slog.fullScroll(View.FOCUS_DOWN);
+			} else {
 				httpTask = new HttpAsyncTask(this);
 				httpTask.execute("getModel");
 				localModelVersion = serverModelVersion;
 				editor.putString("version", localModelVersion);
 				editor.apply();
 				Tlog.append("Get the newest version of model from server.\n");
+				Slog.fullScroll(View.FOCUS_DOWN);
+				Tversion.setText(localModelVersion);
 			}
 			modelName = localModelVersion + ".model";
 			Bswitch.setEnabled(true);
@@ -310,9 +332,9 @@ public class Training extends AppCompatActivity {
 			float[][] datas = new float[WindowSize][];
 			while ((line = br.readLine()) != null && !line.isEmpty()) {
 				String[] colums = line.split("\t");
-				datas[lineNum] = new float[] { Float.parseFloat(colums[3]),
-						Float.parseFloat(colums[4]), Float.parseFloat(colums[5]), Float.parseFloat(colums[6]),
-						Float.parseFloat(colums[7]), Float.parseFloat(colums[8]) };
+				datas[lineNum] = new float[] {
+					//	Float.parseFloat(colums[3]), Float.parseFloat(colums[4]), Float.parseFloat(colums[5]),
+						Float.parseFloat(colums[6]), Float.parseFloat(colums[7]), Float.parseFloat(colums[8]) };
 				if (++lineNum >= WindowSize) {
 					float[] sum = new float[datas[0].length];
 					float[] sqrsum = new float[datas[0].length];
