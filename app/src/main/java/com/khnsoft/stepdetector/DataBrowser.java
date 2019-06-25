@@ -104,7 +104,8 @@ public class DataBrowser extends AppCompatActivity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						File f = new File(rootPath + "/" + path);
-						removeDirectory(f.getPath());
+						if (f.isDirectory()) removeDirectory(f.getPath());
+						else f.delete();
 						refreshFiles();
 					}
 				})

@@ -1,5 +1,6 @@
 package com.khnsoft.stepdetector;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -7,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	boolean gyroReady = false;
 	boolean stepReady = false;
 	
+	String[] typingText = {"오늘 천안 날씨 알려줘", "내일 서울 날씨 어때?", "오늘 용인시 날씨"};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,11 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			@Override
 			public void onClick(View v) {
 				if (sensing) {
-					sensing = false;
-					Ttime.setText("00:00:00");
-					Tstatus.setText("Not running");
-					Toast.makeText(MainActivity.this, "Cancel data scanning.", Toast.LENGTH_SHORT).show();
-					timer.removeMessages(0);
+					cancelData();
 				}
 			}
 		});
@@ -182,33 +183,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				Ttime.setText(String.format("%02d:%02d:%02d", timeDuration / 1000 / 60, timeDuration / 1000 % 100, timeDuration / 10 % 100));
 				timer.sendEmptyMessage(0);
 			} else {
-				sensing = false;
-				Ttime.setText("00:00:00");
-				Tstatus.setText("Not running");
-				
-				SimpleDateFormat date = new SimpleDateFormat("yyMMdd_HHmmss");
-				
-				String FILE_NAME = "data_" + date.format(new Date()) + ".tsv";
-				File folder = new File(MainActivity.this.getFilesDir(), mode[0]+"/"+mode[1]);
-				File file = new File(folder, FILE_NAME);
-				
-				try {
-					if (!folder.exists()) folder.mkdirs();
-					FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
-					BufferedWriter bw = new BufferedWriter(fileWriter);
-					bw.write(sb.toString());
-					bw.close();
-					Toast.makeText(MainActivity.this, "Log Saved", Toast.LENGTH_SHORT).show();
-					count++;
-				} catch (Exception e) {
-					e.printStackTrace();
-					Toast.makeText(MainActivity.this, "Error while Saving", Toast.LENGTH_SHORT).show();
-				}
-				timer.removeMessages(0);
+				if (mode[1].equals("Typing")) cancelData();
+				else saveData();
 			}
 			return false;
 		}
 	});
+	
+	void saveData() {
+		sensing = false;
+		Ttime.setText("00:00:00");
+		Tstatus.setText("Not running");
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyMMdd_HHmmss");
+		
+		String FILE_NAME = "data_" + date.format(new Date()) + ".tsv";
+		File folder = new File(MainActivity.this.getFilesDir(), mode[0]+"/"+mode[1]);
+		File file = new File(folder, FILE_NAME);
+		
+		try {
+			if (!folder.exists()) folder.mkdirs();
+			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fileWriter);
+			bw.write(sb.toString());
+			bw.close();
+			Toast.makeText(MainActivity.this, "Log Saved", Toast.LENGTH_SHORT).show();
+			count++;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Toast.makeText(MainActivity.this, "Error while Saving", Toast.LENGTH_SHORT).show();
+		}
+		timer.removeMessages(0);
+	}
+	
+	void cancelData() {
+		sensing = false;
+		Ttime.setText("00:00:00");
+		Tstatus.setText("Not running");
+		Toast.makeText(MainActivity.this, "Cancel data scanning.", Toast.LENGTH_SHORT).show();
+		timer.removeMessages(0);
+	}
 	
 	@Override
 	protected void onResume() {
@@ -233,6 +247,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		
 		mode[0] = v.getTag().toString();
 		mode[1] = ((Button)v).getText().toString();
+		
+		if (mode[1].equals("Typing")) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Typing Area")
+					.setMessage(typingText[(int)(Math.random()*3)])
+					.setView(new EditText(this))
+					.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							saveData();
+						}
+					})
+					.setOnCancelListener(new DialogInterface.OnCancelListener() {
+						@Override
+						public void onCancel(DialogInterface dialog) {
+							cancelData();
+						}
+					})
+					.show();
+			
+			
+		}
 		
 		sb = new StringBuffer();
 		acceReady = false;
