@@ -29,13 +29,11 @@ import java.util.StringTokenizer;
 
 import libsvm.*;
 
-public class Training extends AppCompatActivity {
+public class SVMTest extends AppCompatActivity {
 	TextView Tversion;
 	TextView Tlog;
 	ScrollView Slog;
 	Button Bswitch;
-	SharedPreferences sp;
-	SharedPreferences.Editor editor;
 	String localModelVersion;
 	String serverModelVersion;
 	HttpAsyncTask httpTask;
@@ -61,14 +59,12 @@ public class Training extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_training);
+		setContentView(R.layout.activity_testing);
 		
 		Tversion = findViewById(R.id.Tversion);
 		Tlog = findViewById(R.id.Tlog);
 		Slog = findViewById(R.id.scrollLog);
 		Bswitch = findViewById(R.id.Bswitch);
-		sp = getSharedPreferences("Settings", MODE_PRIVATE);
-		editor = sp.edit();
 		checkVersion();
 		
 		Bswitch.setOnClickListener(new View.OnClickListener() {
@@ -193,10 +189,10 @@ public class Training extends AppCompatActivity {
 	}
 	
 	class HttpAsyncTask extends AsyncTask<String, Void, String> {
-		Training ui;
+		SVMTest ui;
 		String mode;
 		
-		HttpAsyncTask(Training ui) {
+		HttpAsyncTask(SVMTest ui) {
 			this.ui = ui;
 		}
 		
@@ -230,9 +226,9 @@ public class Training extends AppCompatActivity {
 	String POST(String mode) {
 		String url;
 		if (mode.equals("getVersion"))
-			url = "http://svclaw.ipdisk.co.kr:8002/shopCharacter/getversion/";
+			url = "http://svclaw.ipdisk.co.kr:8002/shopCharacter/getsvmversion/";
 		else if (mode.equals("getModel"))
-			url = "http://svclaw.ipdisk.co.kr:8002/shopCharacter/getmodel/";
+			url = "http://svclaw.ipdisk.co.kr:8002/shopCharacter/getsvmmodel/";
 		else return "Error : Incorrect mode!";
 		
 		String result = "";
@@ -252,7 +248,7 @@ public class Training extends AppCompatActivity {
 				int len = httpCon.getContentLength();
 				byte[] tmpByte = new byte[len];
 				is = httpCon.getInputStream();
-				File folder = new File(Training.this.getFilesDir(), "Models");
+				File folder = new File(SVMTest.this.getFilesDir(), "Models/SVM");
 				File file = new File(folder, serverModelVersion + ".model");
 				if (!folder.exists()) folder.mkdirs();
 				FileOutputStream fos = new FileOutputStream(file);
@@ -289,11 +285,14 @@ public class Training extends AppCompatActivity {
 	}
 	
 	void checkVersion() {
-		File fModel = new File(this.getFilesDir().getAbsolutePath(), "Models");
+		File fModel = new File(this.getFilesDir().getAbsolutePath(), "Models/SVM");
 		File[] lModel = fModel.listFiles();
-		File lastModel = lModel[lModel.length-1];
-		
-		localModelVersion = lastModel.getName().split(".model")[0];
+		if (fModel.isDirectory() && lModel.length > 0) {
+			File lastModel = lModel[lModel.length - 1];
+			localModelVersion = lastModel.getName().split(".model")[0];
+		} else {
+			localModelVersion = "v0.0";
+		}
 		Tlog.append("Checking version.\n");
 		Slog.fullScroll(View.FOCUS_DOWN);
 		Tlog.append("Local model version is " + localModelVersion + "\n");
@@ -312,8 +311,6 @@ public class Training extends AppCompatActivity {
 				httpTask = new HttpAsyncTask(this);
 				httpTask.execute("getModel");
 				localModelVersion = serverModelVersion;
-				editor.putString("version", localModelVersion);
-				editor.apply();
 				Tlog.append("Get the newest version of model from server.\n");
 				Slog.fullScroll(View.FOCUS_DOWN);
 				Tversion.setText(localModelVersion);
@@ -362,7 +359,7 @@ public class Training extends AppCompatActivity {
 	String predictData(String data) throws IOException{
 		String input = data;
 		String output;
-		svm_model model = svm.svm_load_model((new File(Training.this.getFilesDir(), "Models/"+localModelVersion+".model")).getPath());
+		svm_model model = svm.svm_load_model((new File(SVMTest.this.getFilesDir(), "Models/SVM/"+localModelVersion+".model")).getPath());
 		if (model == null) {
 			return "Can't open model file.\n";
 		}

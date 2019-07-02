@@ -19,7 +19,8 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name=".Training"></activity>
+		<activity android:name=".RFTest"></activity>
+		<activity android:name=".SVMTest" />
 		<activity android:name=".DataBrowser" />
 		<activity android:name=".MainActivity">
 			<intent-filter>

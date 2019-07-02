@@ -11,28 +11,23 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	Button Bcancel;
 	Button Bdata;
-	Button Btest;
+	Button BsvmTest;
+	Button BrfTest;
 	boolean sensing = false;
 	SensorManager sm;
 	Sensor AcceSensor;
@@ -91,13 +86,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				}
 			}
 		});
-		Btest = findViewById(R.id.Btest);
-		Btest.setOnClickListener(new View.OnClickListener() {
+		BsvmTest = findViewById(R.id.BsvmTest);
+		BsvmTest.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (!sensing) {
-					Intent intent = new Intent(MainActivity.this, Training.class);
+					Intent intent = new Intent(MainActivity.this, SVMTest.class);
 					startActivity(intent);
+				} else {
+					Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		BrfTest = findViewById(R.id.BrfTest);
+		BrfTest.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!sensing) {
+					Intent intent = new Intent(MainActivity.this, RFTest.class);
+					startActivity(intent);
+				} else {
+					Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
