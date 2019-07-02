@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3ee6864-e079-4683-8820-00806b6c6dab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ML_Training/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_Training/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ML_Training/bin/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ML_Training/src/SVM/RedefineTrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_Training/src/SVM/RedefineTrainingData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ML_Training/test.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_Training/test.tsv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ML_Training/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_Training/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ML_Training/test.txt.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ML_Training/test.txt.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ML_Training/test2.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Redefined_data/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Redefined_data/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RandomForest/RF_RealtimeTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/RandomForest/RF_RealtimeTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SCHPerfectMap/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../SCHPerfectMap/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SCHPerfectMap/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../SCHPerfectMap/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StepDetector/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../StepDetector/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StepDetector/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../StepDetector/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StepDetector/app/src/main/java/com/khnsoft/stepdetector/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StepDetector/app/src/main/java/com/khnsoft/stepdetector/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StepDetector/app/src/main/java/com/khnsoft/stepdetector/Training.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StepDetector/app/src/main/java/com/khnsoft/stepdetector/SVMTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StepDetector/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../StepDetector/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StepDetector/app/src/main/res/layout/activity_training.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../StepDetector/app/src/main/res/layout/activity_testing.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RandomForest/RedefineData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+            <state relative-caret-position="988">
+              <caret line="52" column="46" selection-start-line="15" selection-start-column="16" selection-end-line="52" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -31,8 +33,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RandomForest/RF_RealtimeTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="209">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RandomForest/RedefineTestData.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="874">
+              <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RandomForest/RF_Train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -57,12 +80,13 @@
       <list>
         <option value="$PROJECT_DIR$/RandomForest/RedefineData.py" />
         <option value="$PROJECT_DIR$/RandomForest/RF_Train.py" />
+        <option value="$PROJECT_DIR$/RandomForest/RedefineTestData.py" />
+        <option value="$PROJECT_DIR$/RandomForest/RF_RealtimeTest.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="742" />
-    <option name="y" value="-19" />
+    <option name="x" value="-9" />
     <option name="width" value="978" />
     <option name="height" value="1039" />
   </component>
@@ -81,6 +105,11 @@
               <item name="ML_Python" type="b2602c69:ProjectViewProjectNode" />
               <item name="ML_Python" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ML_Python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ML_Python" type="462c0819:PsiDirectoryNode" />
+              <item name="RandomForest" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -89,7 +118,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -103,7 +132,49 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.RF_Train">
+  <component name="RunManager" selected="Python.RF_RealtimeTest">
+    <configuration name="RF_RealtimeTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ML_Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/RandomForest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RandomForest/RF_RealtimeTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RF_Train (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ML_Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/RandomForest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RandomForest/RF_Train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="RF_Train" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ML_Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,8 +217,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="RedefineTestData" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ML_Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/RandomForest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RandomForest/RedefineTestData.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.RF_RealtimeTest" />
+        <item itemvalue="Python.RedefineTestData" />
+        <item itemvalue="Python.RF_Train (1)" />
         <item itemvalue="Python.RF_Train" />
         <item itemvalue="Python.RedefineData" />
       </list>
@@ -168,13 +263,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.5295302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21543624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3328551" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3319149" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -182,7 +278,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932885" weight="0.32907802" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067115" side_tool="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32907802" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32907802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -219,17 +315,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/sklearn/ensemble/forest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1334">
+          <caret line="524" column="8" selection-start-line="524" selection-start-column="8" selection-end-line="524" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomForest/RedefinedStopData.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RandomForest/RedefineData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        <state relative-caret-position="988">
+          <caret line="52" column="46" selection-start-line="15" selection-start-column="16" selection-end-line="52" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomForest/RedefineTestData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomForest/RF_Train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RandomForest/RF_RealtimeTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="209">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

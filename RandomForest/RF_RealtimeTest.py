@@ -1,12 +1,8 @@
 import pandas as pd
-import numpy as np
-import os
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.externals import joblib
-import pickle
 
 df = pd.read_csv('RedefinedData.txt', sep=' ')
 
@@ -21,4 +17,3 @@ accuracy = accuracy_score(y_test, predicted)
 
 print('Out-of-bag score estimate: %.3f' %rf.oob_score_)
 print('Mean accuracy score: %.3f' %accuracy)
-
