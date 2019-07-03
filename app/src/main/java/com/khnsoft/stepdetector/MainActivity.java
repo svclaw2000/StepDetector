@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	boolean gyroReady = false;
 	boolean stepReady = false;
 	
-	String[] typingText = {"오늘 천안 날씨 알려줘", "내일 서울 날씨 어때?", "오늘 용인시 날씨"};
+	String[] typingText = {"오늘 천안 날씨 알려줘", "내일 서울 날씨 어때?", "오늘 용인시 날씨", "순천향대학교에 대해 알려줘",
+							"마태복음 3장 6절 내용이 뭐야?", "배고픈데 오늘 점심 뭐먹을까?", "점심 메뉴 추천해 줘"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -260,7 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		if (mode[1].equals("Typing")) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("Typing Area")
-					.setMessage(typingText[(int)(Math.random()*3)])
+					.setMessage(typingText[(int)(Math.random()*typingText.length)])
 					.setView(new EditText(this))
 					.setPositiveButton("확인", new DialogInterface.OnClickListener() {
 						@Override
