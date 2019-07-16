@@ -258,21 +258,21 @@ public class RFTest extends AppCompatActivity {
 			float[][] datas = new float[WindowSize][];
 			while ((line = br.readLine()) != null && !line.isEmpty()) {
 				String[] colums = line.split("\t");
-				datas[lineNum] = new float[] {
-						//	Float.parseFloat(colums[3]), Float.parseFloat(colums[4]), Float.parseFloat(colums[5]),
-						Float.parseFloat(colums[6]), Float.parseFloat(colums[7]), Float.parseFloat(colums[8]) };
+				datas[lineNum] = new float[]{
+					//	Float.parseFloat(colums[3]), Float.parseFloat(colums[4]), Float.parseFloat(colums[5]),
+						Float.parseFloat(colums[6]), Float.parseFloat(colums[7]), Float.parseFloat(colums[8])};
 				if (++lineNum >= WindowSize) {
 					float[] sum = new float[datas[0].length];
 					float[] sqrsum = new float[datas[0].length];
 					for (float[] data : datas) {
-						for (int i=0; i<data.length; i++) {
+						for (int i = 0; i < data.length; i++) {
 							sum[i] += data[i];
 							sqrsum[i] += data[i] * data[i];
 						}
 					}
-					for (int i=0; i<datas[0].length; i++) {
+					for (int i = 0; i < datas[0].length; i++) {
 						float mean = sum[i] / WindowSize;
-						float var = sqrsum[i] - mean*mean;
+						float var = sqrsum[i] - mean * mean;
 						result.append(" " + mean + " " + var);
 					}
 				}
