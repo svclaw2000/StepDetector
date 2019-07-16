@@ -38,7 +38,7 @@ with open('RedefinedData.txt', 'w') as output:
 									if int(colums[0]) < 1000 or int(colums[0]) > 4000: continue
 							
 							datas[lineNum % WINDOW_SIZE] = [
-							#	float(colums[3]), float(colums[4]), float(colums[5]),
+						#		float(colums[3]), float(colums[4]), float(colums[5]),
 								float(colums[6]), float(colums[7]), float(colums[8])
 							]
 							lineNum += 1

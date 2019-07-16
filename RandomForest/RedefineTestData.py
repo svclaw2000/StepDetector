@@ -8,6 +8,9 @@ DATA_ROOT = '../../ML_Training/'
 TEST_DATA_LIST = ['test01.tsv', 'test02.tsv', 'test03.tsv', 'test04.tsv',
 				  'test05.tsv', 'test06.tsv', 'test07.tsv', 'test08.tsv', ]
 
+total = 0
+correct = 0
+
 for dataName in TEST_DATA_LIST:
 	TEST_DATA = DATA_ROOT + dataName
 	with open('test.txt', 'w') as output:
@@ -58,4 +61,8 @@ for dataName in TEST_DATA_LIST:
 	for i in range(len(data)):
 		if predicted[i] == data['class'][i]:
 			matched += 1
+	total += len(data)
+	correct += matched
 	print('**%.3f%%** (%d/%d)' % (matched / len(data) * 100, matched, len(data)))
+	
+print('\n**%.3f%%** (%d/%d)' % (correct / total * 100, correct, total))

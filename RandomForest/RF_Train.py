@@ -11,7 +11,7 @@ feature_names = [
 ]
 x_train, y_train = df[feature_names], df['class']
 
-rf = RandomForestClassifier(n_estimators=100, oob_score=True, random_state=123456)
+rf = RandomForestClassifier(n_estimators=100, max_depth=50, oob_score=True, random_state=123456)
 rf.fit(x_train, y_train)
 
 pickle.dump(rf, open('rf_model.pkl', 'wb'))
