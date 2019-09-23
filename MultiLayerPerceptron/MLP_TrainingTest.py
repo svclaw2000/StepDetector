@@ -2,15 +2,18 @@ import pickle
 import pandas as pd
 
 feature_names = [
-	#	'acce0mean', 'acce0var', 'acce1mean', 'acce1var', 'acce2mean', 'acce2var',
+#		'acce0mean', 'acce0var', 'acce1mean', 'acce1var', 'acce2mean', 'acce2var',
 		'gyro0mean', 'gyro0var', 'gyro1mean', 'gyro1var', 'gyro2mean', 'gyro2var'
 	]
 
 rf = pickle.load(open('mlp_model.pkl', 'rb'))
 data = pd.read_csv('RedefinedData.txt', sep=' ')
-predicted = rf.predict(data[feature_names])
+cor_data = data['class']
+scaler = pickle.load(open('scaler.pkl', 'rb'))
+data = scaler.transform(data[feature_names])
+predicted = rf.predict(data)
 matched = 0
-for i in range(len(data)):
-	if predicted[i] == data['class'][i]:
+for i in range(len(cor_data)):
+	if predicted[i] == cor_data[i]:
 		matched += 1
-print('**%.3f%%** (%d/%d)' % (matched / len(data) * 100, matched, len(data)))
+print('**%.3f%%** (%d/%d)' % (matched / len(cor_data) * 100, matched, len(cor_data)))
