@@ -11,9 +11,11 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +28,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	Button Bcancel;
 	Button Bdata;
-	Button BsvmTest;
-	Button BrfTest;
+	Button BTest;
 	boolean sensing = false;
 	SensorManager sm;
 	Sensor AcceSensor;
@@ -87,28 +88,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				}
 			}
 		});
-		BsvmTest = findViewById(R.id.BsvmTest);
-		BsvmTest.setOnClickListener(new View.OnClickListener() {
+		
+		BTest = findViewById(R.id.BTest);
+		BTest.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (!sensing) {
-					Intent intent = new Intent(MainActivity.this, SVMTest.class);
-					startActivity(intent);
-				} else {
-					Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
-		BrfTest = findViewById(R.id.BrfTest);
-		BrfTest.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!sensing) {
-					Intent intent = new Intent(MainActivity.this, RFTest.class);
-					startActivity(intent);
-				} else {
-					Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
-				}
+				PopupMenu popup = new PopupMenu(getApplicationContext(), v);
+				getMenuInflater().inflate(R.menu.test_menu, popup.getMenu());
+				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					@Override
+					public boolean onMenuItemClick(MenuItem item) {
+						switch (item.getItemId()) {
+							case R.id.menuSVM:
+								if (!sensing) {
+									Intent intent = new Intent(MainActivity.this, SVMTest.class);
+									startActivity(intent);
+								} else {
+									Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
+								}
+								break;
+								
+							case R.id.menuRF:
+								if (!sensing) {
+									Intent intent = new Intent(MainActivity.this, RFTest.class);
+									startActivity(intent);
+								} else {
+									Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
+								}
+								break;
+								
+							case R.id.menuMLP:
+								if (!sensing) {
+									Intent intent = new Intent(MainActivity.this, MLPTest.class);
+									startActivity(intent);
+								} else {
+									Toast.makeText(MainActivity.this, "Please try again after sensing.", Toast.LENGTH_SHORT).show();
+								}
+								break;
+						}
+						
+						return false;
+					}
+				});
+				popup.show();
 			}
 		});
 		

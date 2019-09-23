@@ -21,6 +21,7 @@
 		android:theme="@style/AppTheme">
 		<activity android:name=".RFTest"></activity>
 		<activity android:name=".SVMTest" />
+		<activity android:name=".MLPTest" />
 		<activity android:name=".DataBrowser" />
 		<activity android:name=".MainActivity">
 			<intent-filter>

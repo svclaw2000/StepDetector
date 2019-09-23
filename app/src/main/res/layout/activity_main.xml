@@ -16,7 +16,7 @@
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toTopOf="@id/Twalk"
 		app:layout_constraintLeft_toRightOf="@id/Bdata"
-		app:layout_constraintRight_toLeftOf="@id/BsvmTest" />
+		app:layout_constraintRight_toLeftOf="@id/BTest" />
 	
 	<TextView
 		android:id="@+id/Twalk"
@@ -214,23 +214,12 @@
 		app:layout_constraintBottom_toTopOf="@id/Twalk"/>
 	
 	<Button
-		android:id="@+id/BsvmTest"
+		android:id="@+id/BTest"
 		android:layout_width="70dp"
 		android:layout_height="50dp"
-		android:text="SVM"
-		app:layout_constraintRight_toLeftOf="@id/BrfTest"
+		android:text="TEST"
+		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintLeft_toRightOf="@id/Ttime"
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toTopOf="@id/Twalk"/>
-	
-	<Button
-		android:id="@+id/BrfTest"
-		android:layout_width="70dp"
-		android:layout_height="50dp"
-		android:text="RF"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintLeft_toRightOf="@id/BsvmTest"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/Twalk"/>
-
 </android.support.constraint.ConstraintLayout>
