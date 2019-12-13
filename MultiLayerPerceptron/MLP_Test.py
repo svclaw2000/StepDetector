@@ -15,7 +15,7 @@ for dataName in TEST_DATA_LIST:
 	TEST_DATA = DATA_ROOT + dataName
 	with open('test.txt', 'w') as output:
 		output.write('class '
-#				 	 'acce0mean acce0var acce1mean acce1var acce2mean acce2var '
+				 	 'acce0mean acce0var acce1mean acce1var acce2mean acce2var '
 					 'gyro0mean gyro0var gyro1mean gyro1var gyro2mean gyro2var\n')
 		with open(TEST_DATA, 'r') as f:
 			f.readline()
@@ -28,7 +28,7 @@ for dataName in TEST_DATA_LIST:
 				
 				# Cut the first and the last 1 sec
 				datas[lineNum % WINDOW_SIZE] = [
-#					float(colums[3]), float(colums[4]), float(colums[5]),
+					float(colums[3]), float(colums[4]), float(colums[5]),
 					float(colums[6]), float(colums[7]), float(colums[8])
 				]
 				lineNum += 1
@@ -50,7 +50,7 @@ for dataName in TEST_DATA_LIST:
 					output.write('\n')
 	
 	feature_names = [
-#		'acce0mean', 'acce0var', 'acce1mean', 'acce1var', 'acce2mean', 'acce2var',
+		'acce0mean', 'acce0var', 'acce1mean', 'acce1var', 'acce2mean', 'acce2var',
 		'gyro0mean', 'gyro0var', 'gyro1mean', 'gyro1var', 'gyro2mean', 'gyro2var'
 	]
 	
@@ -67,6 +67,6 @@ for dataName in TEST_DATA_LIST:
 			matched += 1
 	total += len(cor_data)
 	correct += matched
-	print('**%.3f%%** (%d/%d)' % (matched / len(cor_data) * 100, matched, len(cor_data)))
+#	print('**%.3f%%** (%d/%d)' % (matched / len(cor_data) * 100, matched, len(cor_data)))
 
 print('\n**%.3f%%** (%d/%d)' % (correct / total * 100, correct, total))

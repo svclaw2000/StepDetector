@@ -1,0 +1,108 @@
+Start fitting
+2019-11-15 16:33:40.352403
+2019-11-15 19:34:12.078537
+alpha=1e-3
+{'hidden_layer_sizes': (30, 170)}
+MLP_Test
+
+**94.360%** (2844/3014)
+MLP_TrainingTest
+**97.858%** (28645/29272)
+
+
+--------------------------------------------------------------------------------
+LokyProcess-7 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-3 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-8 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-4 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-6 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-2 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-5 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/svclaw2000/.local/lib/python3.5/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 204, in <module>
+    exitcode = process_obj._bootstrap()
+  File "/usr/lib/python3.5/multiprocessing/process.py", line 269, in _bootstrap
+    sys.stderr.flush()
+OSError: [Errno 5] Input/output error
+
+
+--------------------------------------------------------------------------------
