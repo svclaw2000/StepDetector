@@ -9,7 +9,7 @@ df = pd.read_csv('RedefinedData.txt', sep=' ')
 
 feature_names = [
     'acce0mean', 'acce0var', 'acce1mean', 'acce1var', 'acce2mean', 'acce2var',
-    'gyro0mean', 'gyro0var', 'gyro1mean', 'gyro1var', 'gyro2mean', 'gyro2var'
+#    'gyro0mean', 'gyro0var', 'gyro1mean', 'gyro1var', 'gyro2mean', 'gyro2var'
 ]
 scaler = MinMaxScaler()
 scaler.fit(df[feature_names])
