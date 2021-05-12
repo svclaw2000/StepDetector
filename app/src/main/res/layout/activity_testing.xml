@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".SVMTest"
+	android:background="#FFEFEF">
+	
+	<TextView
+		android:id="@+id/Lversion"
+		android:layout_width="wrap_content"
+		android:layout_height="50dp"
+		android:text="Current Model Version: "
+		android:textSize="20sp"
+		android:gravity="center"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+	
+	<TextView
+		android:id="@+id/Tversion"
+		android:layout_width="wrap_content"
+		android:layout_height="50dp"
+		android:gravity="center"
+		android:text=""
+		android:textSize="20sp"
+		app:layout_constraintStart_toEndOf="@+id/Lversion"
+		app:layout_constraintTop_toTopOf="parent" />
+	
+	<Button
+		android:id="@+id/Bswitch"
+		android:layout_width="match_parent"
+		android:layout_height="80dp"
+		android:text="Test"
+		android:textSize="20sp"
+		android:enabled="false"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+	
+	<ScrollView
+		android:id="@+id/scrollLog"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toTopOf="@+id/Bswitch"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Lversion"
+		app:layout_constraintVertical_weight="1">
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+			
+			<TextView
+				android:id="@+id/Tlog"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="Welcome to training page!\n"
+				android:textSize="17sp" />
+		</LinearLayout>
+	</ScrollView>
+</android.support.constraint.ConstraintLayout>
