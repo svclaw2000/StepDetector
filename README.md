@@ -1,5 +1,5 @@
 # StepDetector
-> KyuHwon Park and Young-Seob Jeong, "Step Detection When Users Vertically Hold Smartphones," in Proceedings of the 15th Asia Pacific International Conference on Information Science and Technology (APIC-IST), Seoul, South Korea, pp. 1-3, July 5-7, 2020. [ACK: SCH, NRF2020]
+> KyuHwon Park and Young-Seob Jeong, "Step Detection When Users Vertically Hold Smartphones," in Proceedings of the 15th Asia Pacific International Conference on Information Science and Technology (APIC-IST), Seoul, South Korea, pp. 1-3, July 5-7, 2020.
 
 ## 📄 Introduction
 "Step Detection When Users Vertically Hold Smartphones" 논문 관련 코드
